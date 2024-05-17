@@ -58,17 +58,17 @@ function MyNav() {
                 {/* px aka padding-x-axis*/}
                 {/* py aka padding-y-axis*/}
                 <NavbarLink href="#">
-                    <span className="hover:text-red-700 hover:border-b px-5">
+                    <span className="hover:text-red-700 hover:border-b-2 hover:border-yellow-500 px-4 py-2">
                         交通
                     </span>
                 </NavbarLink>
                 <NavbarLink href="#">
-                    <span className="hover:text-red-700">
+                    <span className="hover:text-yellow-400 hover:border-yellow-400 hover:border-b-2 px-4 py-2">
                         景點
                     </span>
                 </NavbarLink>
                 <NavbarLink href="#">
-                    <span className="hover:text-red-700">
+                    <span className="hover:text-green-500 hover:border-green-500 hover:border-b-2 px-4 py-2">
                         關於我們
                     </span>
                 </NavbarLink>
