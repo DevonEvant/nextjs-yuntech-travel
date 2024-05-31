@@ -1,16 +1,13 @@
+/**
+ * @author CHANG, HUNG-YING <horningch@gmail.com>
+ */
 import {
-  Footer,
-  FooterCopyright,
-  FooterLink,
-  FooterLinkGroup,
   Navbar,
   NavbarBrand,
   NavbarCollapse,
   NavbarLink,
   NavbarToggle,
   Carousel as SceneNarration,
-  Card,
-  Button,
   DarkThemeToggle,
 } from "flowbite-react";
 import Link from "next/link";
