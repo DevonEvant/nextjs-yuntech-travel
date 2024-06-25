@@ -45,7 +45,7 @@ export function MyCard({
     <>
       <div
         ref={cardContainer}
-        className={`${expandable ? "group" : ""} overflow-hidden relative flex-none bg-white rounded-3xl`}
+        className={`${expandable ? "group" : ""} overflow-hidden relative flex-none bg-white rounded-3xl dark:bg-[#1f2937]`}
         style={{ transition: `height 0.3s ease` }}
       >
         <div className="flex flex-col justify-between items-center transition-all duration-300">
@@ -57,7 +57,9 @@ export function MyCard({
             src={props.imgSrc}
             alt={props.alt}
           ></img>
-          <div className="text-3xl text-blue-800 p-3">{props.title}</div>
+          <div className="text-3xl text-blue-800 dark:text-yellow-500 p-3">
+            {props.title}
+          </div>
         </div>
 
         <div
@@ -66,7 +68,7 @@ export function MyCard({
           className="hidden group-hover:block"
         >
           <div className="flex flex-col justify-between items-stretch ">
-            <div className="text-2xl text-black p-3">
+            <div className="text-2xl text-black p-3 dark:text-[#9ca3af]">
               {props.description.length > 100
                 ? props.description.substring(0, 100) + "..."
                 : props.description}
@@ -90,7 +92,6 @@ export function MyCard({
           </div>
         </div>
       </div>
-
     </>
   );
 }

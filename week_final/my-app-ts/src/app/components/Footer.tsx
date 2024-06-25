@@ -11,7 +11,7 @@
 export function MyFooter() {
   return (
     <>
-      <footer className="py-5 bg-[#f5f5f7] dark:bg-gray-800">
+      <footer className="py-5 bg-[#f5f5f7] dark:bg-gray-800 dark:text-[#9ca3af]">
         <div className="container mx-auto h-max">
           <div className="flex flex-row items-start">
             <div className="flex flex-row items-center justify-start w-6/12">

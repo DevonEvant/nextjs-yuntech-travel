@@ -110,13 +110,13 @@ export default function Home() {
 
   return (
     <>
-      <div className="bg-[#f5f5f7] dark:bg-gray-800">
+      <div className="bg-[#f5f5f7] dark:bg-gray-700">
         {/* 設定底色是白色的（在firefox 上預設是灰色的）*/}
         <div
           className={`transition-transform duration-400 ${isNavVisible ? "translate-y-0" : "-translate-y-full"}`}
         >
           <div className="rounded-b-3xl overflow-hidden">
-            <div className="bg-white dark:bg-black">
+            <div className="bg-white dark:bg-[#1f2937]">
               <div className="container mx-auto">
                 {/* mx-auto == (margin-x-axis-size is auto (x == y == w/2 == fill up))*/}
                 <MyNav />
@@ -142,18 +142,18 @@ export default function Home() {
               as="div"
             >
               <div className="w-full p-6 pb-0 pl-0 flex justify-start">
-                <span className="text-5xl text-blue-800 ">
+                <span className="text-5xl text-blue-800 dark:text-yellow-500">
                   到了{guessWhereItem.city}，卻不知道有哪些景點玩？
                 </span>
               </div>
 
-              <div className="bg-white dark:bg-block mt-3 rounded-3xl overflow-hidden">
+              <div className="bg-white dark:bg-block mt-3 rounded-3xl overflow-hidden dark:bg-[#1f2937]">
                 <div className="flex flex-col items-start">
                   <div className="w-full pl-6 pb-0 pr-0 pt-0">
                     <div className="flex flex-row items-start justify-around">
                       {/* <div className="w-6 pb-6 inline-block"></div>*/}
-                      <div className="w-5/12 p-6 text-2xl m-auto">
-                        <div className="text-4xl text-blue-800 pb-6">
+                      <div className="w-5/12 p-6 text-2xl m-auto dark:text-[#9ca3af]">
+                        <div className="text-4xl text-blue-800 pb-6 dark:text-yellow-500">
                           {guessWhereItem.title.length < 150
                             ? guessWhereItem.title
                             : guessWhereItem.title.substring(0, 150) + "..."}
@@ -201,6 +201,7 @@ export default function Home() {
         </div>
                 */}
 
+        {/*
         <div className="container mx-auto mt-10 ">
           <div className="w-full p-6 pb-0 pl-0  flex justify-start">
             <span className="text-5xl text-blue-800 ">Look Here！</span>
@@ -238,12 +239,13 @@ export default function Home() {
             </div>
           </div>
         </div>
+                */}
 
         <div className="container mx-auto mt-10 ">
           <div className="w-full p-6 pb-0 pl-0  flex justify-start">
-            <span className="text-5xl text-blue-800 ">想參訪文化類景點？</span>
+            <span className="text-5xl text-blue-800 dark:text-yellow-500">想參訪文化類景點？</span>
           </div>
-          <div className="bg-white rounded-3xl mt-3 ">
+          <div className="bg-white rounded-3xl mt-3  dark:bg-[#1f2937]">
             <div className="scroll-container flex overflow-hidden mb-1">
               <div
                 className="scroll-content flex items-center"
@@ -254,10 +256,7 @@ export default function Home() {
                 }}
               >
                 {items
-                  .filter(
-                    (obj) =>
-                      obj.Class1 === itemsClassification.values().next()!.value,
-                  )
+                  .filter((obj) => obj.Class1 === "文化類")
                   .map((item, idx) => (
                     <div
                       className="mx-auto p-3"
@@ -287,9 +286,57 @@ export default function Home() {
 
         <div className="container mx-auto mt-10 ">
           <div className="w-full p-6 pb-0 pl-0  flex justify-start">
-            <span className="text-5xl text-blue-800 ">Look Here！</span>
+            <span className="text-5xl text-blue-800 dark:text-yellow-500">
+              或是自然風景類景點？
+            </span>
           </div>
-          <div className="bg-white- rounded-3xl mt-3 ">
+          <div className="bg-white rounded-3xl mt-3  dark:bg-[#1f2937]">
+            <div className="scroll-container flex overflow-hidden mb-1">
+              <div
+                className="scroll-content flex items-center"
+                style={{
+                  animation: `scroll ${
+                    items.filter((obj) => obj.Class1 === "自然風景類").length *
+                    10
+                  }s linear infinite`,
+                }}
+              >
+                {items
+                  .filter((obj) => obj.Class1 === "自然風景類")
+                  .map((item, idx) => (
+                    <div
+                      className="mx-auto p-3"
+                      key={
+                        parseInt(item.ScenicSpotID.replace(/\D/g, ""), 10) ||
+                        idx
+                      }
+                    >
+                      <MyCard
+                        props={
+                          {
+                            imgSrc: item.Picture.PictureUrl1,
+                            alt: item.Picture.PictureDescription1,
+                            title: item.ScenicSpotName,
+                            description: item.Description,
+                          } as OverviewCardProps
+                        }
+                        expandable={false}
+                        fixedStyle={true}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="container mx-auto mt-10 ">
+          <div className="w-full p-6 pb-0 pl-0  flex justify-start">
+            <span className="text-5xl text-blue-800 dark:text-yellow-500">
+              都不喜歡？沒關係，雲林縣還有很多好玩的
+            </span>
+          </div>
+          <div className=" rounded-3xl mt-3 ">
             <ResponsiveMasonry
               className=""
               columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
