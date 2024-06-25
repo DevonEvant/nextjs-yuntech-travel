@@ -1,3 +1,7 @@
+## 這裡記錄了每節上課的進度。week\_final表示最終課程專題。
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -41,7 +45,7 @@ npm run lint
 預設使用 'use server'; (建構後端)
 'use client'; (建構前端)
 
-@ == root == ./public
+@ == root == ./src
 
 linces 截圖留證據
 

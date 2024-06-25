@@ -15,13 +15,9 @@ export async function GET() {
     "fakeData.json",
   );
 
-  // 異步讀取文件
+    // 測試用，避免額度快速消耗
   const data = await fs.promises.readFile(filePath, "utf8");
-
-  // 解析 JSON 數據
   const jsonData = JSON.parse(data);
-
-  // 返回 JSON 響應
   return NextResponse.json(jsonData);
 
   // try {
