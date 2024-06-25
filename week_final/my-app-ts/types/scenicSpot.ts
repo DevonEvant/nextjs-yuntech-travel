@@ -33,7 +33,7 @@ export interface ScenicSpot {
   Picture: Picture;
   MapUrl: string;
   Position: Position;
-  Class3: string;
+  Class1?: string;
   ParkingInfo: string;
   ParkingPosition: ParkingPosition;
   TicketInfo: string;

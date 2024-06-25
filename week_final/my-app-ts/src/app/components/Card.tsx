@@ -45,7 +45,7 @@ export function MyCard({
     <>
       <div
         ref={cardContainer}
-        className={`${expandable ? "group" : ""} rounded-3xl overflow-hidden relative flex-none w-64 `}
+        className={`${expandable ? "group" : ""} overflow-hidden relative flex-none bg-white rounded-3xl`}
         style={{ transition: `height 0.3s ease` }}
       >
         <div className="flex flex-col justify-between items-center transition-all duration-300">
@@ -91,17 +91,6 @@ export function MyCard({
         </div>
       </div>
 
-      {/*
-      <Card className="max-w-sm" imgAlt={imgAlt} imgSrc={img} loading="lazy">
-        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {title.trim()}
-        </h5>
-
-        <p className="font-normal text-gray-700 dark:text-gray-400">
-          {trimStr.length > 100 ? trimStr.substring(0, 100) + "..." : trimStr}
-        </p>
-      </Card>
-      */}
     </>
   );
 }

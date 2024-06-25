@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /**
  * @author CHANG, HUNG-YING <horningch@gmail.com>
  */
@@ -24,7 +25,7 @@ export function MyNav() {
           loading="lazy"
         />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          雲林布袋戲館
+                    雲林好好玩
         </span>
         {/* semi(半)bold(粗體/字重) */}
         {/* whitespace-nowrap(不斷行) */}

@@ -25,6 +25,9 @@ import "@styles/keyframes.css";
 // nextjs export root(default) dir is "public/" == localhost:8787/
 export default function Home() {
   const [items, setItems] = useState<ScenicSpotProps[]>([]);
+  const [itemsClassification, setItemsClassification] = useState<Set<string>>(
+    new Set(),
+  );
   const [carouselItems, setCarouselItems] = useState<CarouselProps[]>([]);
   const [guessWhereItem, setGuessWhereItem] = useState<GuessWhereProps>({
     imgSrc: "",
@@ -75,7 +78,7 @@ export default function Home() {
           imgSrc: obj.Picture.PictureUrl1,
           alt: obj.Picture.PictureDescription1 || "",
           title: obj.ScenicSpotName,
-          description: obj.Description,
+          description: obj.DescriptionDetail,
           city: obj.City,
         };
       })[0];
@@ -93,6 +96,16 @@ export default function Home() {
     return () => {
       clearInterval(guessWhereItemInterval);
     };
+  }, [items]);
+
+  useEffect(() => {
+    const classification = new Set<string>();
+
+    items.forEach((obj) => {
+      if (obj.Class1 !== undefined) classification.add(obj.Class1);
+    });
+
+    setItemsClassification(classification);
   }, [items]);
 
   return (
@@ -128,37 +141,38 @@ export default function Home() {
               leaveTo="-translate-x-10 opacity-0"
               as="div"
             >
-              <div className="w-full p-6 pb-0">
-                <div className="w-6 inline-block"></div>
-                <span className="text-4xl text-blue-800">
+              <div className="w-full p-6 pb-0 pl-0 flex justify-start">
+                <span className="text-5xl text-blue-800 ">
                   到了{guessWhereItem.city}，卻不知道有哪些景點玩？
                 </span>
               </div>
 
               <div className="bg-white dark:bg-block mt-3 rounded-3xl overflow-hidden">
                 <div className="flex flex-col items-start">
-                  <div className="w-full p-6 pb-0">
-                    <div className="w-6 inline-block"></div>
-                    <span className="text-2xl text-blue-800">
-                      {(guessWhereItem.title.length < 150) ? guessWhereItem.title : guessWhereItem.title.substring(0, 150) + "..."}
-                    </span>
-                  </div>
-
                   <div className="w-full pl-6 pb-0 pr-0 pt-0">
-                    <div className="flex flex-row items-start">
-                      <div className="w-6 pb-6 inline-block"></div>
-                      <div className="w-5/12 p-3 pl-0 pb-6 pr-0 text-2xl">
-                      {(guessWhereItem.description.length < 150) ? guessWhereItem.description : guessWhereItem.description.substring(0, 150) + "..."}
+                    <div className="flex flex-row items-start justify-around">
+                      {/* <div className="w-6 pb-6 inline-block"></div>*/}
+                      <div className="w-5/12 p-6 text-2xl m-auto">
+                        <div className="text-4xl text-blue-800 pb-6">
+                          {guessWhereItem.title.length < 150
+                            ? guessWhereItem.title
+                            : guessWhereItem.title.substring(0, 150) + "..."}
+                        </div>
+
+                        {guessWhereItem.description.length < 150
+                          ? guessWhereItem.description
+                          : guessWhereItem.description.substring(0, 150) +
+                            "..."}
                       </div>
-                      <div className="w-6/12 ml-auto ">
+                      <div className="ml-auto ">
                         <img
                           style={{
-                            "max-width": "500px",
-                            "max-height": "400px",
+                            "max-width": "800px",
+                            "max-height": "600px",
                           }}
                           src={guessWhereItem.imgSrc}
                           alt={guessWhereItem.alt}
-                          className="object-contain w-full h-full"
+                          className="object-fill w-full h-full"
                           loading="lazy"
                         ></img>
                       </div>
@@ -187,66 +201,124 @@ export default function Home() {
         </div>
                 */}
 
-        <div className="container mx-auto bg-white rounded-3xl mt-10">
-          <div className="scroll-container flex overflow-hidden mb-1">
-            <div
-              className="scroll-content flex items-center"
-              style={{
-                animation: `scroll ${items.length * 10}s linear infinite`,
-              }}
-            >
-              {[...items].reverse().map((item, idx) => (
-                <div
-                  className="mx-auto p-3"
-                  key={
-                    parseInt(item.ScenicSpotID.replace(/\D/g, ""), 10) || idx
-                  }
-                >
-                  <MyCard
-                    props={
-                      {
-                        imgSrc: item.Picture.PictureUrl1,
-                        alt: item.Picture.PictureDescription1,
-                        title: item.ScenicSpotName,
-                        description: item.Description,
-                      } as OverviewCardProps
+        <div className="container mx-auto mt-10 ">
+          <div className="w-full p-6 pb-0 pl-0  flex justify-start">
+            <span className="text-5xl text-blue-800 ">Look Here！</span>
+          </div>
+          <div className="bg-white rounded-3xl mt-3 ">
+            <div className="scroll-container flex overflow-hidden mb-1">
+              <div
+                className="scroll-content flex items-center"
+                style={{
+                  animation: `scroll ${items.length * 10}s linear infinite`,
+                }}
+              >
+                {[...items].reverse().map((item, idx) => (
+                  <div
+                    className="mx-auto p-3"
+                    key={
+                      parseInt(item.ScenicSpotID.replace(/\D/g, ""), 10) || idx
                     }
-                                        expandable={false}
-                                        fixedStyle={true}
-                  />
-                </div>
-              ))}
+                  >
+                    <MyCard
+                      props={
+                        {
+                          imgSrc: item.Picture.PictureUrl1,
+                          alt: item.Picture.PictureDescription1,
+                          title: item.ScenicSpotName,
+                          description: item.Description,
+                        } as OverviewCardProps
+                      }
+                      expandable={false}
+                      fixedStyle={true}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="container mx-auto bg-white rounded-3xl mt-10">
-          <ResponsiveMasonry
-            className=""
-            columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-          >
-            <Masonry className="pt-3 pr-3 pl-3">
-              {items.map((item, idx) => (
-                <div
-                  className="masonry-item mx-auto p-3"
-                  key={
-                    parseInt(item.ScenicSpotID.replace(/\D/g, ""), 10) || idx
-                  }
-                >
-                  <MyCard
-                    props={
-                      {
-                        imgSrc: item.Picture.PictureUrl1,
-                        alt: item.Picture.PictureDescription1,
-                        title: item.ScenicSpotName,
-                        description: item.Description,
-                      } as OverviewCardProps
+        <div className="container mx-auto mt-10 ">
+          <div className="w-full p-6 pb-0 pl-0  flex justify-start">
+            <span className="text-5xl text-blue-800 ">想參訪文化類景點？</span>
+          </div>
+          <div className="bg-white rounded-3xl mt-3 ">
+            <div className="scroll-container flex overflow-hidden mb-1">
+              <div
+                className="scroll-content flex items-center"
+                style={{
+                  animation: `scroll ${
+                    items.filter((obj) => obj.Class1 === "文化類").length * 10
+                  }s linear infinite`,
+                }}
+              >
+                {items
+                  .filter(
+                    (obj) =>
+                      obj.Class1 === itemsClassification.values().next()!.value,
+                  )
+                  .map((item, idx) => (
+                    <div
+                      className="mx-auto p-3"
+                      key={
+                        parseInt(item.ScenicSpotID.replace(/\D/g, ""), 10) ||
+                        idx
+                      }
+                    >
+                      <MyCard
+                        props={
+                          {
+                            imgSrc: item.Picture.PictureUrl1,
+                            alt: item.Picture.PictureDescription1,
+                            title: item.ScenicSpotName,
+                            description: item.Description,
+                          } as OverviewCardProps
+                        }
+                        expandable={false}
+                        fixedStyle={true}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="container mx-auto mt-10 ">
+          <div className="w-full p-6 pb-0 pl-0  flex justify-start">
+            <span className="text-5xl text-blue-800 ">Look Here！</span>
+          </div>
+          <div className="bg-white- rounded-3xl mt-3 ">
+            <ResponsiveMasonry
+              className=""
+              columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+            >
+              <Masonry className="pt-3 pr-3 pl-3">
+                {items.map((item, idx) => (
+                  <div
+                    className="masonry-item mx-auto p-3"
+                    key={
+                      parseInt(item.ScenicSpotID.replace(/\D/g, ""), 10) || idx
                     }
-                  />
-                </div>
-              ))}
-            </Masonry>
-          </ResponsiveMasonry>
+                  >
+                    <MyCard
+                      props={
+                        {
+                          imgSrc: item.Picture.PictureUrl1,
+                          alt: item.Picture.PictureDescription1,
+                          title: item.ScenicSpotName,
+                          description: item.Description,
+                        } as OverviewCardProps
+                      }
+                      expandable={true}
+                      fixedStyle={false}
+                    />
+                  </div>
+                ))}
+              </Masonry>
+            </ResponsiveMasonry>
+          </div>
         </div>
       </div>
 
