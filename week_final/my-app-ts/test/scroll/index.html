@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horizontal Scroll with Flexbox</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+        /* .scroll-container {
+            display: flex;
+            overflow-x: hidden;
+            margin-bottom: 1rem;
+        }
+*/
+
+        /* .scroll-content {
+             display: flex;
+             animation: scroll 10s linear infinite; 
+        /*}*/
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-container flex overflow-hidden mb-1">
+        <div class="scroll-content flex" style="animation: scroll 10s linear infinite">
+            <div class="flex-none w-32 h-32 bg-blue-500 m-2"></div>
+            <div class="flex-none w-32 h-32 bg-green-500 m-2"></div>
+            <div class="flex-none w-32 h-32 bg-yellow-500 m-2"></div>
+            <div class="flex-none w-32 h-32 bg-red-500 m-2"></div>
+            <!-- 添加更多需要滚动的内容 -->
+        </div>
+    </div>
+</body>
+
+</html>

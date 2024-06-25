@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Height Expansion with Hover Animation</title>
+    <style>
+        .container {
+            width: 300px;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            transition: height 0.3s ease;
+            padding: 10px;
+        }
+
+        .content {
+            padding: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .container:hover .content {
+            opacity: 1;
+            display: block;
+        }
+
+        .content {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="content" id="content">Initial Content</div>
+    </div>
+
+    <script>
+        // 获取容器和内容元素
+        const container = document.getElementById("container");
+        const content = document.getElementById("content");
+
+
+        const updateContainerHeight = () => {
+            container.style.height = `${content.offsetHeight}px`;
+        };
+
+        // 鼠标悬停时增加内容并更新容器高度
+        container.addEventListener("mouseenter", () => {
+            updateContainerHeight();
+        });
+
+        // 鼠标离开时淡出内容并重置容器高度
+        container.addEventListener("mouseleave", () => {
+            container.style.height = `${content.offsetHeight}px`;
+        });
+
+        updateContainerHeight();
+    </script>
+</body>
+
+</html>

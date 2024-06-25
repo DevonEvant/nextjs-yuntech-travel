@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: "jf-openhuninn-2.0";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src:
+      local("jf-openhuninn-2.0"),
+      url("../fonts/jf-openhuninn-2.0.ttf") format("opentype");
+  }
+}
+
+@font-face {
+  font-family: "jf-openhuninn-2.0";
+  src:
+    local("jf-openhuninn-2.0"),
+    url("../fonts/jf-openhuninn-2.0.ttf") format("opentype");
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+
+  /* font-family: "jf-openhuninn-2.0"; */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
