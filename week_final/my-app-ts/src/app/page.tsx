@@ -142,7 +142,7 @@ export default function Home() {
               as="div"
             >
               <div className="w-full p-6 pb-0 pl-0 flex justify-start">
-                <span className="text-5xl text-blue-800 dark:text-yellow-500">
+                <span className="text-5xl text-blue-800 dark:text-lime-400">
                   到了{guessWhereItem.city}，卻不知道有哪些景點玩？
                 </span>
               </div>
@@ -153,7 +153,7 @@ export default function Home() {
                     <div className="flex flex-row items-start justify-around">
                       {/* <div className="w-6 pb-6 inline-block"></div>*/}
                       <div className="w-5/12 p-6 text-2xl m-auto dark:text-[#9ca3af]">
-                        <div className="text-4xl text-blue-800 pb-6 dark:text-yellow-500">
+                        <div className="text-4xl text-blue-800 pb-6 dark:text-lime-500">
                           {guessWhereItem.title.length < 150
                             ? guessWhereItem.title
                             : guessWhereItem.title.substring(0, 150) + "..."}
@@ -195,7 +195,7 @@ export default function Home() {
           <div className="flex-shrink-0 w-64 h-64 bg-green-500 snap-start">
             Item 3
           </div>
-          <div className="flex-shrink-0 w-64 h-64 bg-yellow-500 snap-start">
+          <div className="flex-shrink-0 w-64 h-64 bg-lime-500 snap-start">
             Item 4
           </div>
         </div>
@@ -243,7 +243,7 @@ export default function Home() {
 
         <div className="container mx-auto mt-10 ">
           <div className="w-full p-6 pb-0 pl-0  flex justify-start">
-            <span className="text-5xl text-blue-800 dark:text-yellow-500">想參訪文化類景點？</span>
+            <span className="text-5xl text-blue-800 dark:text-lime-500">想參訪文化類景點？</span>
           </div>
           <div className="bg-white rounded-3xl mt-3  dark:bg-[#1f2937]">
             <div className="scroll-container flex overflow-hidden mb-1">
@@ -286,7 +286,7 @@ export default function Home() {
 
         <div className="container mx-auto mt-10 ">
           <div className="w-full p-6 pb-0 pl-0  flex justify-start">
-            <span className="text-5xl text-blue-800 dark:text-yellow-500">
+            <span className="text-5xl text-blue-800 dark:text-lime-500">
               或是自然風景類景點？
             </span>
           </div>
@@ -332,7 +332,7 @@ export default function Home() {
 
         <div className="container mx-auto mt-10 ">
           <div className="w-full p-6 pb-0 pl-0  flex justify-start">
-            <span className="text-5xl text-blue-800 dark:text-yellow-500">
+            <span className="text-5xl text-blue-800 dark:text-lime-500">
               都不喜歡？沒關係，雲林縣還有很多好玩的
             </span>
           </div>

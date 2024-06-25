@@ -32,7 +32,7 @@ export function MyNav() {
         {/* px aka padding-x-axis*/}
         {/* py aka padding-y-axis*/}
         <NavbarLink href="#">
-          <span className="inline-block hover:text-red-700 hover:border-b-2 hover:border-yellow-500 px-4 py-2">
+          <span className="inline-block hover:text-red-700 hover:border-b-2 hover:border-lime-500 px-4 py-2">
             交通
           </span>
         </NavbarLink>

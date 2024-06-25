@@ -57,7 +57,7 @@ export function MyCard({
             src={props.imgSrc}
             alt={props.alt}
           ></img>
-          <div className="text-3xl text-blue-800 dark:text-yellow-500 p-3">
+          <div className="text-3xl text-blue-800 dark:text-lime-500 p-3">
             {props.title}
           </div>
         </div>
