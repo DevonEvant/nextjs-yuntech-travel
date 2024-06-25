@@ -44,7 +44,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 
-  /* font-family: "jf-openhuninn-2.0"; */
+  font-family: "jf-openhuninn-2.0";
 }
 
 @layer utilities {
